@@ -5,75 +5,262 @@
   box-sizing: 100%; 
 }
 
-#top-header {
+@media screen and (min-width: 999px) {
+  #top-header {
   width: 100%;
   display: grid;
   column-gap: 35%;
   grid-template-columns: auto auto;
+  }
+
+  .siteName {
+    color: black;
+    width: 35%;
+    font-size: 2.5em;
+  }
+
+  #tools {
+    margin-left: 75%;
+    align-content: center;
+    width: 25%;
+    font-size: 1em;
+  }
+
+  .nav {
+    background-color: rgb(66, 65, 65);
+  }
+
+  .nav-ul {
+    text-align: center;
+    color: white !important;
+    font-size: 1.5em;
+    width: 80%;
+    height: 100%;
+    display: grid;
+    column-gap: 15%;
+    grid-template-columns: auto auto auto auto auto;
+    margin-left: 8%;
+    padding-top: 0.2%;
+    padding-bottom: 0.2%;
+  }
+
+  .main-image-container {
+    text-align: center;
+    height: 20vw;
+    width: 100%;
+  }
+
+  .main-image {
+    height: 100%;
+    z-index: 1;
+  }
+
+  .delorean {
+    height: 20vw;
+  }
+
+  .own-container {
+    color: blue;
+    margin-left: 25%;
+    margin-top: 2%;
+    width: 12%;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(224, 222, 222, 0.616);
+    border-radius: 15px;
+    font-size: 2em;
+    position: absolute;
+    z-index: 2;
+    padding-bottom: 2%;
+  }
+
+  .own-btn {
+    color: white;
+    background-color: blue;
+    height: 2vw;
+  }
+
+  .spec-conainer {
+    display: grid;
+    column-gap: 15%;
+    grid-template-columns: auto auto;
+    text-align: center;
+  }
+
+  .upgrades-container {
+    width: 100%;
+  }
+
+  .upgrades-header {
+    font-size: 2em;
+  }
+
+  .reviews-header {
+    font-size: 2em;
+    margin-right: 20%;
+  }
+
+  .upgrades-grid {
+    display: grid;
+    column-gap: 15%;
+    grid-template-columns: auto auto;
+  }
+
+  .img-container {
+    background-color: DodgerBlue;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    width: 80%;
+    text-align: center;
+    margin-left: 10%;
+    padding-top: 5%;
+  }
+
+  .img-container > img { /*Target the images in the "imange-cinatiner"*/
+    width: 30%;
+  }
+
+  .upgrades-grid > div {
+    text-align: center;
+    width: 80%;
+  }
+
+  .reviews-ul {
+    text-align: left;
+    display: grid;
+    row-gap: 15%;
+    grid-template-columns: auto;
+    font-size: 1.5em;
+  }
 }
 
-.siteName {
-  color: black;
-  width: 35%;
-  font-size: 2.5em;
-}
+@media screen and (max-width: 998px) {
+  #top-header {
+    width: 90%;
+    display: grid;
+    column-gap: 20%;
+    grid-template-columns: auto auto;
+  }
 
-#tools {
-  margin-left: 75%;
-  align-content: center;
-  width: 25%;
-  font-size: 1em;
-}
+  .siteName {
+    color: black;
+    width: 35%;
+    font-size: 1.4em;
+  }
 
-.nav {
-  background-color: rgb(66, 65, 65);
-}
+  #tools {
+    margin-left: 75%;
+    align-content: center;
+    width: 25%;
+    font-size: 0.8em;
+  }
 
-.nav-ul {
-  text-align: center;
-  color: white !important;
-  font-size: 1.5em;
-  width: 80%;
-  height: 100%;
-  display: grid;
-  column-gap: 15%;
-  grid-template-columns: auto auto auto auto auto;
-  margin-left: 8%;
-  padding-top: 0.2%;
-  padding-bottom: 0.2%;
-}
+  .nav {
+    background-color: rgb(66, 65, 65);
+  }
 
-.main-image-container {
-  text-align: center;
-  height: 20vw;
-  width: 100%;
-}
+  .nav-ul {
+    text-align: center;
+    color: white;
+    font-size: 1em;
+    width: 80%;
+    height: 100%;
+    display: grid;
+    column-gap: 8%;
+    grid-template-columns: auto auto auto auto auto;
+    padding-top: 0.2%;
+    padding-bottom: 0.2%;
+  }
 
-.main-image {
-  height: 100%;
-  z-index: 1;
-}
+  .main-image-container {
+    text-align: center;
+    height: 45vw;
+    width: 100%;
+  }
 
-.delorean {
-  height: 20vw;
-}
+  .main-image {
+    height: 100%;
+    z-index: 1;
+  }
 
-.own-container {
-  color: blue;
-  margin-left: 25%;
-  margin-top: 2%;
-  width: 12%;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(224, 222, 222, 0.616);
-  border-radius: 15px;
-  font-size: 2em;
-  position: absolute;
-  z-index: 2;
-  padding-bottom: 2%;
-}
+  .delorean {
+    height: 40vw;
+  }
 
-.own-btn {
-  color: white;
-  background-color: blue;
-  height: 2vw;
+  .own-container {
+    color: blue;
+    margin-top: 5%;
+    margin-left: 12%;
+    width: 32%;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(224, 222, 222, 0.616);
+    border-radius: 15px;
+    font-size: 1.2em;
+    position: absolute;
+    z-index: 2;
+    padding-bottom: 2%;
+  }
+
+  .own-btn {
+    color: white;
+    background-color: blue;
+    height: 8vw;
+    font-size: 0.8em;
+  }
+
+  .spec-conainer {
+    display: grid;
+    column-gap: 15%;
+    grid-template-columns: auto;
+    text-align: center;
+    margin-bottom: 20%;
+  }
+
+  .upgrades-container {
+    width: 100%;
+  }
+
+  .upgrades-header {
+    font-size: 1.6em;
+    text-align: center;
+  }
+
+  .reviews-header {
+    font-size: 1.6em;
+    text-align: center;
+  }
+
+  .upgrades-grid {
+    display: grid;
+    column-gap: 15%;
+    grid-template-columns: auto auto;
+  }
+
+  .img-container {
+    background-color: DodgerBlue;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    width: 80%;
+    text-align: center;
+    margin-left: 10%;
+    padding-top: 5%;
+  }
+
+  .img-container > img { /*Target the images in the "imange-cinatiner"*/
+    width: 30%;
+  }
+
+  .upgrades-grid > div {
+    text-align: center;
+    width: 80%;
+  }
+
+  .reviews-ul {
+    text-align: left;
+    display: grid;
+    row-gap: 15%;
+    grid-template-columns: auto;
+    font-size: 1em;
+  }
 }

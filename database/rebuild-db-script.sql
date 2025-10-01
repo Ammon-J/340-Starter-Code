@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS public.inventory (
 	CONSTRAINT inventory_pkey PRIMARY KEY (inv_id)
 );
 
-ALTER TABLE IF EXISTS public_inviory
+ALTER TABLE IF EXISTS public_invitory
 	ADD CONSTRAINT fk_classification FOREIGN KEY (classification_id)
 	REFERENCES public.classification (classification_id) MATCH SIMPLE
 	ON UPDATE CASCADE

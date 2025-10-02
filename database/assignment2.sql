@@ -35,7 +35,8 @@ WHERE inv_id = 10
 -- Get Make, Model from inventory table and Classification name from classification table
 SELECT classification_name, inv_make, inv_model
 FROM public.classification
-INNER JOIN public.inventory ON public.classification.classification_id = public.inventory.inv_id
+INNER JOIN public.inventory ON public.classification.classification_id = public.inventory.classification_id
+WHERE classification_name = 'Sport'
 
 -- Query #6
 -- Add a folder "vehicles" to the file path for the images and thumbnails in the inventory table

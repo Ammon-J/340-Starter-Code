@@ -32,7 +32,7 @@
     height: 100%;
     display: grid;
     column-gap: 15%;
-    grid-template-columns: auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto auto;
     margin-left: 8%;
     padding-top: 0.2%;
     padding-bottom: 0.2%;
@@ -162,7 +162,7 @@
     height: 100%;
     display: grid;
     column-gap: 8%;
-    grid-template-columns: auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto auto;
     padding-top: 0.2%;
     padding-bottom: 0.2%;
   }

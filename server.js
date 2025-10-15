@@ -32,13 +32,13 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 // Inventory routes
 app.use("/inv", inventoryRoute)
 
-// Inventory routes
+// Inventory Detail routes
 app.use("/detail", inventoryRoute)
 
 // File Not Found Route - must be last route in list
-// app.use(async (req, res, next) => {
-//   next({status: 404, message: 'Sorry, we could not access the desired page.'})
-// })
+app.use(async (req, res, next) => {
+  next({status: 404, message: 'Sorry, we could not access the desired page.'})
+})
 
 /* ***********************
 * Express Error Handler
@@ -46,12 +46,14 @@ app.use("/detail", inventoryRoute)
 *************************/
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
+  let foot = await utilities.getFoot()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
   if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
   res.render("errors/error", {
     title: err.status || 'Server Error',
     message,
-    nav
+    nav,
+    foot
   })
 })
 

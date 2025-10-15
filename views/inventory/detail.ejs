@@ -1,0 +1,9 @@
+<link rel="stylesheet" href="/css/detail.css">
+
+<% if (title) { %>
+<h1 class="header"><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
+
+<%- grid %>

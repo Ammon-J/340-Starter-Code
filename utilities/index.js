@@ -24,11 +24,6 @@ Util.getNav = async function (req, res, next) {
   return list
 }
 
-Util.getFoot = async function(req, res, next) {
-  let list = '<a href="../../inv/detail/">Throw Error</a>'
-  return list
-}
-
 /* **************************************
 * Build the classification view HTML
 * ************************************ */

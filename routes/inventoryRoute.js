@@ -8,4 +8,6 @@ router.get("/type/:classificationId", invController.buildByClassificationId);
 
 router.get("/detail/:invId", invController.buildByInvId);
 
+router.get("/errors/error500:error", invController.error500)
+
 module.exports = router;

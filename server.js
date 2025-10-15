@@ -37,8 +37,15 @@ app.use("/detail", inventoryRoute)
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
+  next({status: 500, message: 'Sorry, we had a problem.'})
+})
+
+// File Not Found Route - must be last route in list
+app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we could not access the desired page.'})
 })
+
+
 
 /* ***********************
 * Express Error Handler
@@ -47,7 +54,16 @@ app.use(async (req, res, next) => {
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
+  if(err.status == 404){ message = err.message} 
+  else if(err.status == 500) {
+    message = err.message
+    res.render("errors/error500", {
+      title: err.status + ' Yup, it was a 500 error',
+      message,
+      nav
+    })
+  }
+  else {message = 'Oh no! There was a crash. Maybe try a different route?'}
   res.render("errors/error", {
     title: err.status + ' There was a problem!' || 'Server Error',
     message,

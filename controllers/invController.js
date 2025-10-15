@@ -22,7 +22,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
 module.exports = invCont
 
 /* ***************************
- *  Build inventory by classification view
+ *  Build inventory by id view
  * ************************** */
 invCont.buildByInvId = async function (req, res, next) {
   const inv_id = req.params.invId
@@ -37,3 +37,11 @@ invCont.buildByInvId = async function (req, res, next) {
 }
 
 module.exports = invCont
+
+invCont.error500 = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("./errors/error500", {
+    title: '500 error',
+    nav
+  })
+}

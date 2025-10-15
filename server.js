@@ -36,9 +36,9 @@ app.use("/inv", inventoryRoute)
 app.use("/detail", inventoryRoute)
 
 // File Not Found Route - must be last route in list
-app.use(async (req, res, next) => {
-  next({status: 404, message: 'Sorry, we could not access the desired page.'})
-})
+// app.use(async (req, res, next) => {
+//   next({status: 404, message: 'Sorry, we could not access the desired page.'})
+// })
 
 /* ***********************
 * Express Error Handler

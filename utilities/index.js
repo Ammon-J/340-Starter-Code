@@ -1,4 +1,5 @@
 const invModel = require("../models/inventory-model")
+const accModel = require("../models/account-model")
 const Util = {}
 
 /* ************************
@@ -60,7 +61,8 @@ Util.buildVehicleGrid = async function(data) {
   let grid;
   if(data.length == 1) {
     data.forEach(vehicle => {
-    grid = '<div class="main-grid"> <div class="img-contaner"><img class="thumb-img" src="' + vehicle.inv_image + '" alt="Image of '
+    grid = '<link rel="stylesheet" href="/css/background.css">'
+    grid +='<div class="main-grid"> <div class="img-contaner"><img class="thumb-img" src="' + vehicle.inv_image + '" alt="Image of '
     + vehicle.inv_make + ' ' + vehicle.inv_model +' on CSE Motors" /></div>'
     grid += '<div class="detail-grid">'
     grid += '<h1 class="detail-header">' + vehicle.inv_make + ' ' + vehicle.inv_model + ' Details </h1>'
@@ -74,6 +76,19 @@ Util.buildVehicleGrid = async function(data) {
   } else { 
     grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
   }
+  return grid
+}
+
+/* ************************
+ * Constructs the nav HTML unordered list
+ ************************** */
+Util.buildLoginGrid = async function () {
+  let grid = '<link rel="stylesheet" href="/css/background.css">'
+  return grid
+}
+
+Util.buildRegisterGrid = async function() {
+  let grid = '<link rel="stylesheet" href="/css/background.css">'
   return grid
 }
 

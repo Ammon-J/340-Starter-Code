@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="/css/login.css">
+<link rel="stylesheet" href="/css/background.css">
+
+<% if (title) { %>
+<!-- <h1 class="form-header"><%= title %></h1> -->
+<% } else {
+  res.redirect('/')
+} %>
+<div class="error">
+    <%- messages() %>
+    <% if (errors) { %>
+  <ul class="notice">
+  <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+  <%  }) %>
+  </ul>
+  <% } %>
+</div>
+
+<div class="login-container">
+    <form action="/account/login" method="post">
+      <h1 class="form-header">Login</h1>
+      <label for="account_email" ></label><br>
+      <input type="email" id="account_email" required placeholder=" Email" required value="<%= locals.account_email %>"><br>
+      <label for="account_password"></label><br>
+      <input type="password" id="account_password" required placeholder=" Password"><br><br>
+      <button type="submit">Sign In</button>
+      <p>No account? <a href="/account/register">Sign-up</a></p>
+    </form>
+  </div>

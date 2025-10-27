@@ -45,3 +45,14 @@ invCont.error500 = async function (req, res, next) {
     nav
   })
 }
+module.exports = invCont
+
+invCont.error = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("./errors/error", {
+    title: '404 error',
+    nav
+  })
+}
+
+module.exports = invCont

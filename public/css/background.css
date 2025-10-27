@@ -1,0 +1,23 @@
+body {
+    background-image: url("../images/vehicles/lambo.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    backdrop-filter: blur(8px);
+    margin: 0px;
+    min-height: 100vh;
+    color: white;
+}
+
+.nav {
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0,0,0, 0.3);
+}
+
+.siteName > a {
+    color: white !important;
+}
+
+.tools > a {
+    color: white !important;
+}

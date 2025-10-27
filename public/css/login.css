@@ -1,0 +1,93 @@
+input:required:invalid, input:focus:invalid {
+    color: red;
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+
+input:required:valid {
+    color: green;
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+
+@media screen and (min-width: 1000px) {
+        .login-container {
+        font-family: 'Roboto', helvetica, arial, sans-serif;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        height: 40vh;
+        margin-top: 20vh;
+    }
+
+    form {
+        text-align: center;
+        background: linear-gradient(to bottom right, rgb(52, 72, 102), rgb(134, 124, 124));
+        width: 40%;
+        height: 100%;
+        padding-top: 3vh;
+        border-radius: 10px;
+    }
+
+    .form-header {
+        color: white;
+    }
+
+    form > input {
+        height: 5vh;
+        width: 40vh;
+        border-radius: 10px;
+        border-style: none;
+    }
+
+    form > button {
+        height: 5vh;
+        width: 40vh;
+        border-radius: 10px;
+        border-style: none;
+        background: linear-gradient(to bottom right, rgb(0, 210, 218),  rgb(159, 249, 252));
+        cursor: pointer;
+    }
+}
+
+@media screen and (max-width: 999px) {
+        .login-container {
+        font-family: 'Roboto', helvetica, arial, sans-serif;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        height: 60%;
+        margin-top: 5vh;
+    }
+
+    form {
+        text-align: center;
+        background: linear-gradient(to bottom right, rgb(52, 72, 102), rgb(134, 124, 124));
+        width: 90%;
+        height: 100%;
+        padding-top: 3vh;
+        border-radius: 10px;
+    }
+
+    .form-header {
+        color: white;
+    }
+
+    form > input {
+        height: 5vh;
+        width: 80%;
+        border-radius: 10px;
+        border-style: none;
+    }
+
+    form > button {
+        height: 5vh;
+        width: 80%;
+        border-radius: 10px;
+        border-style: none;
+        background: linear-gradient(to bottom right, rgb(0, 210, 218),  rgb(159, 249, 252));
+        cursor: pointer;
+    }
+}

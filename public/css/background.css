@@ -1,5 +1,5 @@
 body {
-    background-image: url("../images/vehicles/lambo.jpg");
+    background-image: url("../images/vehicles/Lamborghini-Centenario.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -9,9 +9,18 @@ body {
     color: white;
 }
 
-.nav {
+#top-header {
     background-color: rgb(0, 0, 0);
     background-color: rgba(0,0,0, 0.3);
+}
+
+#wrapper {
+    margin: 0%;
+}
+
+.nav {
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0,0,0, 0.6);
 }
 
 .siteName > a {
@@ -20,4 +29,5 @@ body {
 
 .tools > a {
     color: white !important;
+    font-size: larger;
 }

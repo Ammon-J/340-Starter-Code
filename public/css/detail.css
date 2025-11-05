@@ -38,7 +38,7 @@ body {
     }
 
     .container-color {
-        background-color: rgb(190, 190, 190);
+        background-color: rgba(0, 0, 0, 0.623);
     }
 
     .container-color, .container-normal {
@@ -58,27 +58,32 @@ body {
     column-gap: 5%;
     grid-template-columns: auto;
     margin-left: 0%;
-        text-align: center;
+    text-align: center;
     }
 
     .img-contaner {
         padding-top: 2%;
-        width: 100%;
-        text-align: center;
+        width: 99%;
+        justify-content: center;
+        align-items: center;
+        display: flex;
     }
 
     .thumb-img {
-        text-align: center;
-        width: 100%;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        width: 95%;
         border-radius: 10px;
     }
+
 
     .detail-header {
         font-size: 2em;
     }
 
     .container-color {
-        background-color: rgb(190, 190, 190);
+        background-color: rgb(59, 59, 59);
     }
 
     .container-color, .container-normal {
@@ -86,8 +91,9 @@ body {
         padding-top: 0.5%;
         padding-bottom: 0.5%;
         padding-left: 3%;
-        width: 98%;
+        width: 90%;
         min-height: 10%;
         border-radius: 10px;
+        margin-left: 2.5%;
     }
 }

@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="/css/login.css">
+<link rel="stylesheet" href="/css/background.css">
+
+<% if (title) { %>
+<h1 class="form-header"><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
+<div class="error">
+    <%- messages() %>
+    <% if (errors) { %>
+  <ul class="notice">
+  <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+  <%  }) %>
+  </ul>
+  <% } %>
+</div>
+
+<a href="/inv/add-classification">Add Classification</a><br>
+<a href="/inv/add-inventory">Add Vehicle</a>

@@ -38,7 +38,7 @@ async function buildRegister(req, res, next) { // Why isn't the grid showing up?
 async function registerAccount(req, res) {
   let nav = await utilities.getNav()
   let grid = utilities.buildLoginGrid()
-  const { account_firstname, account_lastname, account_email, account_password } = req.body
+  const { account_firstname, account_lastname, account_email, account_password } = req.body 
 
   // Hash the password before storing
   let hashedPassword

@@ -17,8 +17,8 @@ input:required:valid {
         justify-content: center;
         align-items: center;
         display: flex;
-        height: 40vh;
-        margin-top: 20vh;
+        height: fit-content;
+        margin-top: 10vh;
     }
 
     form {
@@ -34,11 +34,17 @@ input:required:valid {
         color: white;
     }
 
-    form > input {
+    form > input, form > select {
         height: 5vh;
         width: 40vh;
         border-radius: 10px;
         border-style: none;
+    }
+
+    textarea {
+        width: 40vh;
+        height: 15vh;
+        border-radius: 10px;
     }
 
     form > button {
@@ -48,6 +54,7 @@ input:required:valid {
         border-style: none;
         background: linear-gradient(to bottom right, rgb(0, 210, 218),  rgb(159, 249, 252));
         cursor: pointer;
+        margin-bottom: 8%;
     }
 }
 
@@ -58,7 +65,7 @@ input:required:valid {
         justify-content: center;
         align-items: center;
         display: flex;
-        height: 60%;
+        height: fit-content;
         margin-top: 5vh;
     }
 
@@ -75,11 +82,17 @@ input:required:valid {
         color: white;
     }
 
-    form > input {
+    form > input, form > select {
         height: 5vh;
         width: 80%;
         border-radius: 10px;
         border-style: none;
+    }
+
+    textarea {
+        width: 80%;
+        height: 15vh;
+        border-radius: 10px;
     }
 
     form > button {
@@ -89,5 +102,6 @@ input:required:valid {
         border-style: none;
         background: linear-gradient(to bottom right, rgb(0, 210, 218),  rgb(159, 249, 252));
         cursor: pointer;
+        margin-bottom: 8%;
     }
 }

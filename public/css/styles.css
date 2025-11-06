@@ -271,3 +271,8 @@
     font-size: 1em;
   }
 }
+
+footer {
+  text-align: center;
+  width: 99%;
+}

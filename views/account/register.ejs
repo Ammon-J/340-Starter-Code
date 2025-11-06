@@ -19,11 +19,11 @@
 <div class="register-container">
   <form id="registerForm" action="/account/register" method="post">
     <h1 class="form-header">Register</h1>
-    <label for="account_firstname"></label><br>
+    <label for="account_firstname"> </label><br>
     <input type="text" name="account_firstname" id="accountFirstname" placeholder=" First Name" required value="<%= locals.account_firstname %>"><br>
-    <label for="account_lastname"></label><br>
+    <label for="account_lastname"> </label><br>
     <input type="text" id="account_lastname" name="account_lastname" placeholder=" Last Name" required value="<%= locals.account_lastname %>"><br>
-    <label for="account_email" ></label><br>
+    <label for="account_email" > </label><br>
     <input type="email" id="account_email" name="account_email" placeholder="Enter a valid email address"required value="<%= locals.account_email %>"><br><br>
     <div for="account_password" class="password-prompt">There must be at least 12 characters, one must be a number, one must be a lowercase letter, one must be a capital letter, and one must be a non-alphanumeric character</div><br><br>
     <input type="password" id="account_password" name="account_password" placeholder=" Password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"><br><br>

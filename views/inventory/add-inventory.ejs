@@ -24,24 +24,24 @@ let year = d.getFullYear() %>
     <form action="./add-inventory" method="post">
       <h1 class="form-header">Add Vehicle</h1>
       <%- grid %><br><br>
-      <label for="invMake" ></label><br>
+      <label for="invMake" > </label><br>
       <input type="text" name="inv_make" id="invMake" placeholder=" Make" required value="<%= locals.inv_make %>"><br><br>
-      <label for="invModel" ></label><br>
+      <label for="invModel" > </label><br>
       <input type="text" name="inv_model" id="invModel" placeholder=" Model" required value="<%= locals.inv_model %>"><br><br>
-      <label for="invYear" ></label><br>
+      <label for="invYear" > </label><br>
       <input type="number" max="<%= year %>" name="inv_year" id="invYear" placeholder=" Year" required value="<%= locals.inv_year %>"><br><br>
-      <label for="invDescription" ></label><br>
+      <label for="invDescription" > </label><br>
       <textarea name="inv_description" id="invDescription" placeholder=" Description" required><%= locals.inv_description %></textarea><br><br>
-      <label for="imagePath" ></label><br>
+      <label for="imagePath" > </label><br>
       <input type="text" name="inv_image" id="imagePath" placeholder=" Image Path" required value="No Image Available"><br><br>
-      <label for="imageThumbnail" ></label><br>
+      <label for="imageThumbnail" > </label><br>
       <input type="text" name="inv_thumbnail" id="imageThumbnail" placeholder=" Thumbnail Path" required value="No Image Available"><br><br>
-      <label for="invPrice" ></label><br>
+      <label for="invPrice" > </label><br>
       <input type="number" step="0.01" name="inv_price" id="invPrice" placeholder=" Price" required value="<%= locals.inv_price %>"><br><br>
-      <label for="invmiles" ></label><br>
+      <label for="invmiles" > </label><br>
       <input type="number" name="inv_miles" step="any" id="invmiles" placeholder=" Mile Count" required value="<%= locals.inv_miles %>"><br><br>
-      <label for="invColor" ></label><br>
-      <input type="text" name="inv_color" id="invColor" placeholder=" Color" required value="<%= locals.inv_color %>"><br><br>
+      <label for="invColor" > </label><br>
+      <input type="text" name="inv_color" id="invColor" placeholder=" Color" required value="<%= locals.inv_color %>"><br><br><br>
       <button type="submit">Add Vehicle</button>
     </form>
   </div>

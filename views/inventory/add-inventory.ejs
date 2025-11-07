@@ -23,7 +23,6 @@ let year = d.getFullYear() %>
 <div class="login-container">
     <form action="./add-inventory" method="post">
       <h1 class="form-header">Add Vehicle</h1>
-      <label for="classification_id">Choose a class:</label><br>
       <%- grid %><br><br>
       <label for="invMake" >Make:</label><br>
       <input type="text" name="inv_make" id="invMake" required value="<%= locals.inv_make %>"><br><br>

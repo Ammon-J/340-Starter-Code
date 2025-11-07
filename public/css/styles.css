@@ -38,7 +38,7 @@
     height: 100%;
     display: grid;
     grid-auto-flow: column;
-    margin-left: 5%;
+    margin-left: 10%;
     padding-top: 0.2%;
     padding-bottom: 0.2%;
   }

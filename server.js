@@ -17,6 +17,7 @@ const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
 const utilities = require("./utilities/index")
 const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
 
 /* ***********************
  * View Engine and Templatess
@@ -46,8 +47,11 @@ app.use(function(req, res, next){
   next()
 })
 
+app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+// JWT check needs cookieParser to run first so req.cookies is populated
+app.use(utilities.checkJWTToken)
 
 /* ***********************
  * Routes

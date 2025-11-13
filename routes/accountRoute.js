@@ -14,6 +14,14 @@ router.post(
   utilities.handleErrors(accountController.accountLogin)
 )
 
+// Deliver account management view
+router.get(
+  "/",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.buildAccountManagement)
+)
+
+// Deliver registration view
 router.get("/register", utilities.handleErrors(accountController.buildRegister))
 
 // Process the registration data

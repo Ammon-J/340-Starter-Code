@@ -18,12 +18,12 @@
 </div>
 
 <div class="login-container">
-    <form action="/account/login" method="post">
+    <form id="loginForm" action="/account/login" method="post">
       <h1 class="form-header">Login</h1>
       <label for="account_email" >Email:</label><br>
-      <input type="email" id="account_email" required placeholder=" example@gmail.com" required value="<%= locals.account_email %>"><br><br>
+      <input type="email" id="account_email" name="account_email" required placeholder=" example@gmail.com" required value="<%= locals.account_email %>"><br><br>
       <label for="account_password">Password:</label><br>
-      <input type="password" id="account_password" required><br><br>
+      <input type="password" id="account_password" name="account_password" required><br><br>
       <button type="submit">Sign In</button>
       <p>No account? <a href="/account/register">Sign-up</a></p>
     </form>

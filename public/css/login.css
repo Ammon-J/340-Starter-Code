@@ -18,7 +18,13 @@ input:required:valid {
         align-items: center;
         display: flex;
         height: fit-content;
-        margin-top: 10vh;
+        padding-top: 10vh;
+    }
+
+    
+
+    #inventoryDisplay > tbody > tr > td > a{
+        color: white !important;
     }
 
     form {
@@ -66,7 +72,7 @@ input:required:valid {
         align-items: center;
         display: flex;
         height: fit-content;
-        margin-top: 5vh;
+        padding-top: 5vh;
     }
 
     form {
@@ -76,6 +82,12 @@ input:required:valid {
         height: 100%;
         padding-top: 3vh;
         border-radius: 10px;
+    }
+
+    #inventoryDisplay, #classificationList {
+        justify-content: center;
+        align-items: center;
+        display: flex;
     }
 
     .form-header {

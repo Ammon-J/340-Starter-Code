@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="/css/login.css">
+<link rel="stylesheet" href="/css/background.css">
+
+<% if (title) { %>
+<!--<h1 class="form-header"><%= title %></h1>-->
+<% } else {
+  res.redirect('/')
+} %>
+<div class="error">
+    <%- messages() %>
+    <% if (errors) { %>
+  <ul class="notice">
+  <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+  <%  }) %>
+  </ul>
+  <% } %>
+</div>
+
+<div class="login-container">
+    <form action="/inv/delete" method="post">
+      <h1 class="form-header">Delete Vehicle</h1><br>
+      <label for="invMake" >Make:</label><br>
+      <input type="text" name="inv_make" id="invMake" readonly required value="<%= locals.inv_make %>"><br><br>
+      <label for="invModel" >Model:</label><br>
+      <input type="text" name="inv_model" id="invModel" readonly required value="<%= locals.inv_model %>"><br><br>
+      <label for="invYear" >Year:</label><br>
+      <input type="number" name="inv_year" readonly id="invYear" placeholder=" Ex. 2025" required value="<%= locals.inv_year %>"><br><br>
+      <label for="invPrice" >Price:</label><br>
+      <input type="number" step="0.01" name="inv_price" id="invPrice" readonly placeholder=" Ex. 1000.00" required value="<%= locals.inv_price %>"><br><br>
+        <input type="hidden" name="inv_id"
+            <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+            <% } %>>
+      <button type="submit">Delete Vehicle</button> 
+    </form>
+  </div>
+  <br>
+    <p class="notice">*Note: Deletion is permanent. This action cannot be undone.*</p>

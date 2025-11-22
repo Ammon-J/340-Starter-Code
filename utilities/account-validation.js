@@ -51,6 +51,28 @@ const utilities = require(".")
         .withMessage("Password does not meet requirements."),
     ]
   }
+  
+    /* ******************************
+ * Check data and return errors or continue to registration
+ * ***************************** */
+validate.checkRegData = async (req, res, next) => {
+  const { account_firstname, account_lastname, account_email } = req.body
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    res.render("account/register", {
+      errors,
+      title: "Registration",
+      nav,
+      account_firstname,
+      account_lastname,
+      account_email,
+    })
+    return
+  }
+  next()
+}
 
   validate.loginRules = () => {
     return [
@@ -75,6 +97,29 @@ const utilities = require(".")
     ]
   }
 
+  /* ******************************
+ * Check data and return errors or continue to login
+ * ***************************** */
+validate.checkLogData = async (req, res, next) => {
+  const { account_firstname, account_lastname, account_email } = req.body
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    res.render("account/login", {
+      errors,
+      title: "Login",
+      nav,
+      account_email,
+    })
+    return
+  }
+  next()
+}
+
+/* *****************************
+* Validation rules for updating account info
+* ***************************** */
 validate.updateInfoRules = () => {
     return [
       // firstname is required and must be string
@@ -110,6 +155,30 @@ validate.updateInfoRules = () => {
       }),
     ]
   }
+
+
+  /* ******************************
+ * Check data and return errors or continue updating account
+ * ***************************** */
+validate.checkInfoData = async (req, res, next) => {
+  const { account_id, account_firstname, account_lastname, account_email } = req.body
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    res.render("account/update", {
+      errors,
+      title: "Edit Info",
+      nav,
+      account_id,
+      account_firstname,
+      account_lastname,
+      account_email,
+    })
+    return
+  }
+  next()
+}
 
   // password is required and must be strong password
 validate.updatePasswordRules = () => {
@@ -149,70 +218,5 @@ validate.updatePasswordRules = () => {
     }
     next()
   }
-
-    /* ******************************
- * Check data and return errors or continue to registration
- * ***************************** */
-validate.checkRegData = async (req, res, next) => {
-  const { account_firstname, account_lastname, account_email } = req.body
-  let errors = []
-  errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    let nav = await utilities.getNav()
-    res.render("account/register", {
-      errors,
-      title: "Registration",
-      nav,
-      account_firstname,
-      account_lastname,
-      account_email,
-    })
-    return
-  }
-  next()
-}
-
-  /* ******************************
- * Check data and return errors or continue updating account
- * ***************************** */
-validate.checkInfoData = async (req, res, next) => {
-  const { account_id, account_firstname, account_lastname, account_email } = req.body
-  let errors = []
-  errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    let nav = await utilities.getNav()
-    res.render("account/update", {
-      errors,
-      title: "Edit Info",
-      nav,
-      account_id,
-      account_firstname,
-      account_lastname,
-      account_email,
-    })
-    return
-  }
-  next()
-}
-
-  /* ******************************
- * Check data and return errors or continue to login
- * ***************************** */
-validate.checkLogData = async (req, res, next) => {
-  const { account_firstname, account_lastname, account_email } = req.body
-  let errors = []
-  errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    let nav = await utilities.getNav()
-    res.render("account/login", {
-      errors,
-      title: "Login",
-      nav,
-      account_email,
-    })
-    return
-  }
-  next()
-}
 
 module.exports = validate

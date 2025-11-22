@@ -41,7 +41,7 @@
       <h1 class="form-header">Change Password</h1>
       <label for="account_password">Password:</label><br>
       <input type="password" id="account_password" name="account_password" required><br><br>
-      <label for="account_password" class="password-prompt" style="text-align: center;">There must be at least 12 characters, one must be a number, one must be a lowercase letter, one must be a capital letter, and one must be a non-alphanumeric character</label><br><br>
+      <div class="password-prompt" style="text-align: center;">There must be at least 12 characters, one must be a number, one must be a lowercase letter, one must be a capital letter, and one must be a non-alphanumeric character</div><br><br>
       <button type="submit">Update</button> 
       <input type="hidden" name="account_id"
         <% if(locals.account_id) { %> value="<%= locals.account_id %>"

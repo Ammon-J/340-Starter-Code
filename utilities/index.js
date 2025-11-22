@@ -10,6 +10,7 @@ const Util = {}
 Util.getNav = async function (req, res, next) {
   let data = await invModel.getClassifications()
   let list = '<ul class="nav-ul" style="margin-top: 0px; margin-bottom: 0px;">'
+  list += '<li></li>'
   list += '<li style="width: fit-content;"><a style="text-decoration: none; color: white;" href="/" title="Home page">Home</a></li>'
   data.rows.forEach((row) => {
     list += '<li style="width: fit-content;">'
@@ -23,6 +24,7 @@ Util.getNav = async function (req, res, next) {
       "</a>"
     list += "</li>"
   })
+  list += '<li></li>'
   list += "</ul>"
   return list
 }
@@ -89,8 +91,17 @@ Util.buildLoginGrid = async function () {
   return grid
 }
 
-Util.buildRegisterGrid = async function() {
-  let grid = '<link rel="stylesheet" href="/css/background.css">'
+Util.buildAccountManagementrGrid = async function(token) {
+  let grid= '<h1 class="main-header">Welcome Back ' + token.account_firstname + '!</h1>';
+  grid += '<div class="management-links">'
+
+  if(token.account_type == "Admin" || token.account_type == "Employee") {
+    grid += ' <a href="/inv">Inventory Management</a>'
+  }
+
+  grid += '<a href="/account/update/' + token.account_id + '">Update Account</a>'
+  grid += '</div>'
+
   return grid
 }
 
@@ -147,6 +158,17 @@ Util.checkJWTToken = (req, res, next) => {
     return res.redirect("/account/login")
   }
  }
+
+ Util.CheckRole = (req, res, next) => {
+   const jwt_token = res.locals.accountData
+   res.locals.user = jwt_token
+  if (jwt_token.account_type == "Admin" || jwt_token.account_type == "Employee") {
+    next()
+  } else {
+    req.flash("notice", "You do not have permission to access that page.")
+    return res.redirect("/account/account-error")
+  }
+}
 
 /* ****************************************
  * Middleware For Handling Errors

@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="/css/login.css">
+<link rel="stylesheet" href="/css/background.css">
+
+<% if (title) { %>
+<!-- <h1 class="form-header"><%= title %></h1> -->
+<% } else {
+  res.redirect('/')
+} %>
+<div class="error">
+    <%- messages() %>
+    <% if (errors) { %>
+  <ul class="notice">
+  <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+  <%  }) %>
+  </ul>
+  <% } %>
+</div>
+
+<div class="login-container">
+    <form id="loginForm" action="/account/update-info" method="post">
+      <h1 class="form-header">Update Personal Info</h1>
+      <label for="account_firstname" >Firstname:</label><br>
+      <input type="text" id="account_firstname" name="account_firstname" required value="<%= locals.account_firstname %>"><br><br>
+      <label for="account_lastname" >Lastname:</label><br>
+      <input type="text" id="account_lastname" name="account_lastname" required  value="<%= locals.account_lastname %>"><br><br>
+      <label for="account_email" >Email:</label><br>
+      <input type="email" id="account_email" name="account_email" required placeholder=" example@gmail.com" value="<%= locals.account_email %>"><br><br>
+      <button type="submit">Update</button>
+      <input type="hidden" name="account_id"
+        <% if(locals.account_id) { %> value="<%= locals.account_id %>"
+        <% } %>>
+    </form>
+</div>
+
+<br>
+<br>
+
+<div class="login-container">
+    <form id="registerForm" action="/account/update-password" method="post">
+      <h1 class="form-header">Change Password</h1>
+      <label for="account_password">Password:</label><br>
+      <input type="password" id="account_password" name="account_password" required><br><br>
+      <label for="account_password" class="password-prompt" style="text-align: center;">There must be at least 12 characters, one must be a number, one must be a lowercase letter, one must be a capital letter, and one must be a non-alphanumeric character</label><br><br>
+      <button type="submit">Update</button> 
+      <input type="hidden" name="account_id"
+        <% if(locals.account_id) { %> value="<%= locals.account_id %>"
+        <% } %>>
+    </form>
+</div>

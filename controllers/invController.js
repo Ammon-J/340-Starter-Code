@@ -1,6 +1,8 @@
 const inventoryModel = require("../models/inventory-model")
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
+const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken")
 
 const invCont = {}
 

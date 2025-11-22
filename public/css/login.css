@@ -21,7 +21,6 @@ input:required:valid {
         padding-top: 10vh;
     }
 
-    
 
     #inventoryDisplay > tbody > tr > td > a{
         color: white !important;
@@ -29,10 +28,12 @@ input:required:valid {
 
     form {
         text-align: center;
-        background: linear-gradient(to bottom right, rgb(13, 20, 32),rgb(128, 128, 131));
+        background: linear-gradient(to bottom right, rgba(0, 19, 56, 1) 0%, rgba(45, 59, 107, 1) 25%, rgb(82, 90, 124) 65%, rgb(163, 163, 163) 89%);
         width: 40%;
         height: 100%;
         padding-top: 3vh;
+        padding-left: 1%;
+        padding-right: 1%;
         border-radius: 10px;
     }
 

@@ -56,27 +56,27 @@ router.post("/add-inventory",
 
 router.get("/approval", 
   utilities.checkLogin,
-  utilities.CheckRole,
+  utilities.CheckAdmin,
   utilities.handleErrors(invController.buildApproval))
 
 router.post("/invApproval", 
   utilities.checkLogin,
-  utilities.CheckRole,
+  utilities.CheckAdmin,
   utilities.handleErrors(invController.approveInventory))
 
 router.post("/deleteInvApproval",
   utilities.checkLogin,
-  utilities.CheckRole,
+  utilities.CheckAdmin,
   utilities.handleErrors(invController.deleteInvApproval))
 
 router.post("/classApproval",
   utilities.checkLogin,
-  utilities.CheckRole,
+  utilities.CheckAdmin,
   utilities.handleErrors(invController.approveClassification))
 
 router.post("/deleteClassApproval",
   utilities.checkLogin,
-  utilities.CheckRole,
+  utilities.CheckAdmin,
   utilities.handleErrors(invController.deleteClassApproval))
 
 router.get("/delete/:invId", 

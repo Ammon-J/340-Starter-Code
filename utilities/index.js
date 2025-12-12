@@ -166,6 +166,9 @@ Util.buildLoginGrid = async function () {
   return grid
 }
 
+/* ************************
+ * Build the account management view HTML
+ ************************** */
 Util.buildAccountManagementrGrid = async function(token) {
   let grid= '<h1 class="main-header">Welcome Back ' + token.account_firstname + '!</h1>';
   grid += '<div class="management-links">'

@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="/css/login.css">
+<link rel="stylesheet" href="/css/background.css">
+<link rel="stylesheet" href="/css/approval.css">
+
+<% const d = new Date()
+let year = d.getFullYear() %>
+
+<% if (title) { %>
+<h1 class="main-header"><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
+<div class="error">
+    <%- messages() %>
+    <% if (errors) { %>
+  <ul class="notice">
+  <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+  <%  }) %>
+  </ul>
+  <% } %>
+</div>
+
+<div class="approve-containor">
+    <h2>Unapproved Inventory</h2>
+    <h2>Unapproved Classifications</h2>
+    <%- unapprovedInventory %>
+    <%- unapprovedClasses %>
+</div>

@@ -107,7 +107,7 @@ validate.checkInventoryData = async (req, res, next) => {
   errors = validationResult(req)
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav()
-    let grid = await utilities.buildClassificationList(classification_id)
+    let grid = await utilities.buildUnapprovedClassificationList(classification_id)
     res.render("inventory/add-inventory", {
       errors,
       title: "Add Vehicle",
@@ -153,8 +153,8 @@ validate.inventoryEditRules = () => {
         body("inv_description")
         .trim()
         .escape()
-        .isLength({ min: 3 })
-        .withMessage("Please enter a Description."),
+        .isLength({ min: 2 })
+        .withMessage("Please enter a  valid Description."),
 
         body("inv_image")
         .trim()

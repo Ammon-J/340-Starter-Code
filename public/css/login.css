@@ -10,6 +10,12 @@ input:required:valid {
     background-repeat: no-repeat;
 }
 
+.notice {
+    color: green;
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+
 @media screen and (min-width: 1000px) {
         .login-container {
         font-family: 'Roboto', helvetica, arial, sans-serif;

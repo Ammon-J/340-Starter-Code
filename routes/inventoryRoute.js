@@ -4,6 +4,7 @@ const router = new express.Router()
 const invController = require("../controllers/invController")
 const classValidate = require('../utilities/inventory-validation')
 const utilities = require("../utilities")
+const { route } = require("./static")
 
 
 // Route to build inventory by classification view
@@ -51,8 +52,32 @@ router.get("/add-inventory",
 router.post("/add-inventory",
     classValidate.inventoryRules(),
     classValidate.checkInventoryData,
-    utilities.handleErrors(invController.AddInventory)
-)
+    utilities.handleErrors(invController.AddInventory))
+
+router.get("/approval", 
+  utilities.checkLogin,
+  utilities.CheckRole,
+  utilities.handleErrors(invController.buildApproval))
+
+router.post("/invApproval", 
+  utilities.checkLogin,
+  utilities.CheckRole,
+  utilities.handleErrors(invController.approveInventory))
+
+router.post("/deleteInvApproval",
+  utilities.checkLogin,
+  utilities.CheckRole,
+  utilities.handleErrors(invController.deleteInvApproval))
+
+router.post("/classApproval",
+  utilities.checkLogin,
+  utilities.CheckRole,
+  utilities.handleErrors(invController.approveClassification))
+
+router.post("/deleteClassApproval",
+  utilities.checkLogin,
+  utilities.CheckRole,
+  utilities.handleErrors(invController.deleteClassApproval))
 
 router.get("/delete/:invId", 
   utilities.checkLogin,

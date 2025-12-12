@@ -41,9 +41,12 @@ invCont.buildByInvId = async function (req, res, next) {
 
 module.exports = invCont
 
+/* ***************************
+ *  Build inventory management view
+ * ************************** */
 invCont.buildManagement = async function (req, res, next) {
   let nav = await utilities.getNav()
-  const classificationSelect = await utilities.buildClassificationList()
+  const classificationSelect = await utilities.buildClassificationListWithInv() 
   res.render("./inventory/management", {
     title: "Manage Inventory",
     nav,
@@ -58,13 +61,16 @@ invCont.buildManagement = async function (req, res, next) {
 invCont.getInventoryJSON = async (req, res, next) => {
   const classification_id = parseInt(req.params.classification_id)
   const invData = await invModel.getInventoryByClassificationId(classification_id)
-  if (invData[0].inv_id) {
+  if (invData[0].inv_id && invData.length > 0) {
     return res.json(invData)
   } else {
     next(new Error("No data returned"))
   }
 }
 
+/* ***************************
+ *  Build add classification view
+ * ************************** */
 invCont.buildAddClass = async function (req, res, next) {
   let nav = await utilities.getNav()
   res.render("./inventory/add-classification", {
@@ -74,6 +80,9 @@ invCont.buildAddClass = async function (req, res, next) {
   })
 }
 
+/* ***************************
+ *  Add Classification
+ * ************************** */
 invCont.addClass = async function (req, res, next) {
   let nav = await utilities.getNav()
   const { classification_name } = req.body
@@ -83,10 +92,9 @@ invCont.addClass = async function (req, res, next) {
   if (classResult) {
     req.flash(
       "notice",
-      `Congratulations, you\'ve added the class ${classification_name}!`
+      `Congratulations,  the class ${classification_name} is now waiting for approval!`
     )
 
-    nav = await utilities.getNav() // Refresh the nav
     res.status(201).render("inventory/add-classification", { 
       title: "Add Class",
       nav,
@@ -102,6 +110,9 @@ invCont.addClass = async function (req, res, next) {
   }
 }
 
+/* ***************************
+ *  Build add inventory view
+ * ************************** */
 invCont.buildAddInventory = async function (req, res, next) {
   let nav = await utilities.getNav()
   let grid = await utilities.buildClassificationList()
@@ -113,20 +124,21 @@ invCont.buildAddInventory = async function (req, res, next) {
   })
 }
 
+/* ***************************
+ *  Add Inventory Item
+ * ************************** */
 invCont.AddInventory = async function (req, res, next) {
   const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body
   let nav = await utilities.getNav()
-  let grid = await utilities.buildClassificationList(classification_id)
+  let grid = await utilities.buildClassificationList()
   
   const inventoryResult = await invModel.addInventory(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id)
 
   if (inventoryResult) {
     req.flash(
       "notice",
-      `Congratulations, you\'ve successfully added ${inv_make + " " + inv_model}!`
+      `Congratulations, ${inv_make + " " + inv_model} is now waiting for approval!`
     )
-
-    nav = await utilities.getNav() // Refresh the nav
     res.status(201).render("inventory/add-inventory", { 
       title: "Add Class",
       nav,
@@ -141,6 +153,179 @@ invCont.AddInventory = async function (req, res, next) {
       grid,
       error:null
     })
+  }
+}
+
+/* ***************************
+  *  Build approval view
+  * ************************** */
+invCont.buildApproval = async function (req, res, next) {
+  const jwt_token = res.locals.accountData
+   res.locals.user = jwt_token
+  let nav = await utilities.getNav()
+  let unapprovedInventory = await utilities.buildInventoryApprovalGrid()
+  let unapprovedClasses = await utilities.buildClassificationApprovalGrid(jwt_token)
+  res.render("./inventory/approval", {
+    title: "Approve Inventory",
+    nav,
+    unapprovedInventory,
+    unapprovedClasses,
+    errors: null
+  })
+}
+
+
+/* ***************************
+  *  Approve Inventory Item 
+  * ************************** */
+invCont.approveInventory = async function (req, res, next) {
+  const jwt_token = res.locals.accountData
+   res.locals.user = jwt_token
+  const { inv_id } = req.body
+  const invClass = await invModel.getClassByInvId(inv_id)
+  let approveResult = false
+  if(invClass.length == 0){
+    req.flash(
+      "error",
+      `The vehicle's classification does not exist.`
+    )
+    res.redirect("/inv/approval")
+    return
+  }
+  else if (invClass.length == 1 && invClass[0].classification_approved == true){
+    let currDate = new Date();
+    approveResult = await invModel.approveInventory(inv_id, jwt_token.account_id, currDate)
+  } else {
+    req.flash(
+      "error", 
+      `The vehicle's classification must be approved first.`
+    )
+    res.redirect("/inv/approval")
+    return
+  }
+
+  if (approveResult) {
+    req.flash(
+      "notice", 
+      `The vehicle was successfully approved.`
+    )
+    // Refresh all of the data on the page
+    let nav = await utilities.getNav()
+    let unapprovedInventory = await utilities.buildInventoryApprovalGrid()
+    let unapprovedClasses = await utilities.buildClassificationApprovalGrid(jwt_token)
+    res.render("./inventory/approval", {
+    title: "Approve Inventory",
+    nav,
+    unapprovedInventory,
+    unapprovedClasses,
+    errors: null
+  })
+  } else {
+    req.flash(
+      "notice",   
+      "Sorry, the approval failed."
+    )
+    res.redirect("/inv/approval")
+  }
+} 
+
+/* ***************************
+  *  Delete Inventory Item/Approval
+  * ************************** */
+invCont.deleteInvApproval = async function (req, res, next) {
+  const jwt_token = res.locals.accountData
+   res.locals.user = jwt_token
+  const { inv_id } = req.body
+  const deleteResult = await invModel.deleteInventoryItem(inv_id)
+  if (deleteResult) { 
+    req.flash(
+      "notice",
+      `The vehicle was successfully deleted.`
+    )   
+    // Refresh all of the data on the page
+    let nav = await utilities.getNav()
+    let unapprovedInventory = await utilities.buildInventoryApprovalGrid()
+    let unapprovedClasses = await utilities.buildClassificationApprovalGrid(jwt_token)
+    res.render("./inventory/approval", {  
+    title: "Approve Inventory",
+    nav,
+    unapprovedInventory,
+    unapprovedClasses,
+    errors: null
+  })
+  } else {
+    req.flash(
+      "notice", 
+      "Sorry, the deletion failed."
+    )
+    res.redirect("/inv/approval")
+  }
+}
+
+/* ***************************
+  *  Approve Classification
+  * ************************** */
+invCont.approveClassification = async function (req, res, next) {
+  const jwt_token = res.locals.accountData
+   res.locals.user = jwt_token
+  const { classification_id, user_id } = req.body
+  let currDate = new Date();
+  const approveResult = await invModel.approveClass(classification_id, user_id, currDate)
+  if (approveResult) {
+    req.flash(
+      "notice",
+      `The classification was successfully approved.`
+    )
+    // Refresh all of the data on the page
+    let nav = await utilities.getNav()
+    let unapprovedInventory = await utilities.buildInventoryApprovalGrid()
+    let unapprovedClasses = await utilities.buildClassificationApprovalGrid(jwt_token)
+    res.render("./inventory/approval", {
+    title: "Approve Inventory",
+    nav,
+    unapprovedInventory,
+    unapprovedClasses,
+    errors: null
+  })
+  } else {
+    req.flash(
+      "notice",
+      "Sorry, the approval failed."
+    )
+    res.redirect("/inv/approval")
+  } 
+}
+
+/* ***************************
+  *  Delete Classification
+  * ************************** */
+invCont.deleteClassApproval = async function (req, res, next) {
+  const jwt_token = res.locals.accountData
+   res.locals.user = jwt_token
+  const { classification_id } = req.body
+  const deleteResult = await invModel.deleteClassItem(classification_id)
+  if (deleteResult) {
+    req.flash(
+      "notice",
+      `The classification was successfully deleted.`
+    )
+    // Refresh all of the data on the page
+    let nav = await utilities.getNav()
+    let unapprovedInventory = await utilities.buildInventoryApprovalGrid()
+    let unapprovedClasses = await utilities.buildClassificationApprovalGrid(jwt_token)
+    res.render("./inventory/approval", {
+    title: "Approve Inventory",
+    nav,
+    unapprovedInventory,
+    unapprovedClasses,
+    errors: null
+  })
+  } else {
+    req.flash(
+      "error", 
+      "Cannot delete classification: Inventory items are associated with this classification. Please delete associated inventory items first."
+    )
+    res.redirect("/inv/approval")
   }
 }
 
